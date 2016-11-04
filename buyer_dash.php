@@ -59,7 +59,7 @@ if(!isset($_SESSION['buyer']))
     {
         if($_GET['message']=="po")
         {
-            echo "<form class=\"form-horizontal\" method=\"post\" action=\"check_buyer.php\">
+            echo "<form class=\"form-horizontal\" method=\"post\" action=\"placeorder.php\">
   <div class=\"form-group\">
     <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Weight</label>
     <div class=\"col-sm-5\">
@@ -75,7 +75,7 @@ if(!isset($_SESSION['buyer']))
   <div class=\"form-group\">
     <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Any specific instructions</label>
     <div class=\"col-sm-5\">
-      <input type=\"text\" name=\"desc\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Please specify any special instructions\">
+      <input type=\"text\" name=\"description\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Please specify any special instructions\">
     </div>
   </div>
   <div class=\"form-group\">
@@ -87,12 +87,29 @@ if(!isset($_SESSION['buyer']))
         }
         if($_GET['message']=="vo")
         {
-            $sql = "SELECT balance FROM seller where phone = \"".$_SESSION['seller']."\"";
+            $sql = "SELECT * FROM orders where phone = \"".$_SESSION['buyer']."\"";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
+    echo "<div class=\"table-responsive\">
+            <table class=\"table table-striped\">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Weight</th>
+                  <th>Location</th>
+                  <th>Description</th>
+                  <th>Time of Order</th>
+                </tr>
+              </thead>
+              <tbody>";
+   
     while($row = $result->fetch_assoc()) {
-        echo "<br>The Balance is Rs. ".$row['balance'];
+        echo "<tr><td>".$row['oid']."<td>".$row['weight']."<td>".$row['location']."<td>".$row['description']."<td>".$row['timestamp'];
     }
+    echo " </tbody>
+            </table>
+          </div>";
+    
     } else echo "No records found!!";
         }
     }
