@@ -74,7 +74,7 @@ Serial.print(weight);
     return;
   }
 
-  String url = "/set.php?user=83417&weight=";
+  String url = "/set.php?user=123&type=0&weight=";
   url += weight;
   
   
@@ -107,4 +107,3 @@ Serial.print(weight);
   Serial.println();
   Serial.println("closing connection");
 }
-
