@@ -4,17 +4,16 @@
     or die('Error connecting to MySQL server.');
  
 	
-	  $query = "SELECT weight,user FROM w WHERE id = 1 ";
+	  $query = "SELECT led FROM w WHERE id = 1 ";
 
 	   $result = mysqli_query($dbc, $query)
     or die('Error querying database.');
 	
 	  while ($row = mysqli_fetch_array($result)){
-     $weight = $row['weight'];
-	$user = $row['user'];
+    $led = $row['led'];
     
-    echo 'weight: ' . $weight . '<br />';
-	    echo 'user: ' . $user . '<br />';  } 
+    echo 'led: ' . $led . '<br />';
+  } 
 
 header("Refresh:20");
 

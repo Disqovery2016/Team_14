@@ -1,6 +1,7 @@
 CREATE TABLE `w` (
   `id` INT AUTO_INCREMENT,
-  `weight` VARCHAR(20),
-  `user` VARCHAR(20),
+  `led` VARCHAR(20),
+  `temp` VARCHAR(20),
+  `ir` VARCHAR(60),
   PRIMARY KEY (`id`)
 );
