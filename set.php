@@ -1,15 +1,14 @@
 
 <?php
- $dbc = mysqli_connect('localhost', 'web', '8341769092', 'web')
+ $dbc = mysqli_connect('mysql.hostinger.in', 'u272468780_bob', '8341769092', 'u272468780_bob')
     or die('Error connecting to MySQL server.');
-  $input = $_GET['led'];
-    $input1 = $_GET['led1'];
-
+  $input = $_GET['weight'];
+    $input1 = $_GET['user'];
   
 
   
 
-          $sql = "UPDATE w SET led=$input and temp=$input1 WHERE id=1";
+          $sql = "UPDATE w SET weight=$input,temp=$user WHERE id=1";
 
   mysqli_query($dbc, $sql)
     or die('Error querying database.');

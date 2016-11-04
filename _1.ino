@@ -17,6 +17,11 @@ pinMode(5,OUTPUT);
 pinMode(4,OUTPUT);
 pinMode(0,OUTPUT);
 
+digitalWrite(16,HIGH);
+digitalWrite(5,HIGH);
+digitalWrite(4,HIGH);
+digitalWrite(0,HIGH);
+
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
@@ -68,28 +73,11 @@ Serial.print(weight);
     Serial.println("connection failed");
     return;
   }
-if(b1==LOW )
-  {
-  String url = "/set.php?led1=0&led=";
-  url += weight;
-  }
-  if(b2==LOW )
-  {
-  String url = "/set.php?led1=1&led=";
-  url += weight;
-  }
 
-   if(b3==LOW)
-  {
-  String url = "/set.php?led1=2&led=";
+  String url = "/set.php?user=83417&weight=";
   url += weight;
-  }
-
-   if(b4==LOW )
-  {
-  String url = "/set.php?led1=3&led=";
-  url += weight;
-  }
+  
+  
   
   Serial.print("Requesting URL: ");
   Serial.println(url);
