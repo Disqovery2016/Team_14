@@ -48,11 +48,13 @@ if(!isset($_SESSION['seller']))
 
     <div class="container">
 
-
+<h2>Welcome <?php echo $_SESSION['seller']; ?><br></h2><br>
 <a class="btn btn-default" href="seller_dash.php?message=db" role="button">Display Balance</a>
+<a class="btn btn-default" href="#" role="button">Redeem to my Account</a>
 <a class="btn btn-default" href="#" role="button">Change Password</a>
 <a class="btn btn-default" href="#" role="button">Leave application</a>
 <a class="btn btn-default" href="#" role="button">Update Profile</a>
+<br><br>
 <?php
     if(isset($_GET['message']))
     {

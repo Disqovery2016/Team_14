@@ -4,7 +4,12 @@ session_start();
 if(isset($_SESSION['seller']))
 {
     header('location: seller.php');
-}?>
+}
+if(isset($_SESSION['buyer']))
+{
+    header('location: buyer_dash.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,7 +87,7 @@ if(isset($_SESSION['seller']))
     </div>
   </div>
 </form>
-<a href="buyers_login.php">Buyer? click here.</a>
+<a href="buyer_login.php">Buyer? click here.</a>
 
     </div><!-- /.container -->
 
