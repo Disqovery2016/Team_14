@@ -6,5 +6,5 @@ The Web App uses BootStrap for designing a responsive GUI.
 
 Important note to set up the project:
 1) Create the database and import disq.sql
-2) Replace the crdentials for database connections in php.
+2) Replace the credentials for database connections in php.
 3) Download the ESP8266 Board in your arduino IDE to compile the arduino code.
