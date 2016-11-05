@@ -1,11 +1,16 @@
 <?php
-require 'dbconnect.php';
 session_start();
 
-if(!isset($_SESSION['seller']))
+if(isset($_SESSION['seller']))
 {
-    header('location: index.php');
-}?>
+    header('location: seller_dash.php');
+}
+if(isset($_SESSION['buyer']))
+{
+    header('location: buyer_dash.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -22,7 +27,8 @@ if(!isset($_SESSION['seller']))
   </head>
 
   <body>
- <nav class="navbar navbar-inverse">
+
+    <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -40,7 +46,7 @@ if(!isset($_SESSION['seller']))
             <li><a href="#contact">Contact</a></li>
           </ul>
            <ul class="nav navbar-nav navbar-right">
-                <li><a class="cover-nav-item" href="logout.php">Logout</a></li> 
+                <li><a class="cover-nav-item" href="index.php">Login</a></li> 
             </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,34 +61,53 @@ echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">
   <strong>".$_GET['message']."</strong></div>";
 }
 ?>
-<h2>Welcome <?php echo $_SESSION['seller']; ?><br></h2><br>
-<a class="btn btn-default" href="seller_dash.php?msg=db" role="button">Display Balance</a>
-<a class="btn btn-default" href="#" role="button">Redeem to my Account</a>
-<a class="btn btn-default" href="#" role="button">Change Password</a>
-<a class="btn btn-default" href="#" role="button">Leave application</a>
-<a class="btn btn-default" href="#" role="button">Update Profile</a>
-<br><br>
-<?php
-    if(isset($_GET['msg']))
-    {
-        if($_GET['msg']=="db")
-        {
-            $sql = "SELECT balance FROM seller where phone = \"".$_SESSION['seller']."\"";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<br>The Balance is Rs. ".$row['balance'];
-    }
-    } else echo "No records found!!";
-        }
-    }
-?>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <form class="form-horizontal" method="post" action="check.php">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Mobile</label>
+    <div class="col-sm-5">
+      <input type="tel" name="user" class="form-control" id="inputEmail3" placeholder="Mobile number">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-5">
+      <input type="password" name="pass" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <a href"register.php"><button class="btn btn-default">Register</button></a>
+    </div>
+  </div>
+</form>
+<a href="buyer_login.php">Buyer? click here.</a>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-
+   </body>
 </html>
+
 <?php
 
 ?>

@@ -27,11 +27,11 @@ if ($result->num_rows > 0) {
 		header('location: seller_dash.php?message=Successfully%20Logged%20in.');
 	}
 	if(($_POST['user']==$row["user"] && $pass!=$row["password"]))
-	header('location: index.php?message=Invalid%20Username%20or%20password');
+	header('location: seller_login.php?message=Invalid%20Username%20or%20password');
 	}
 } 
 else {
-    header('location: index.php?message=You%20are%20not%20registered');
+    header('location: seller_login.php?message=You%20are%20not%20registered');
 }
 $conn->close();
 ?>
