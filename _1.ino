@@ -1,5 +1,6 @@
 
 
+
 #include <ESP8266WiFi.h>
 
 const char* ssid     = "Celkon A.R 45";
@@ -7,20 +8,15 @@ const char* password = "8341769092";
 
 const char* host = "v16he2v4.esy.es";
 String url;
-int weight;
+float weight;
 
 void setup() {
   Serial.begin(115200);
   delay(10);
 pinMode(16,OUTPUT);
-pinMode(5,OUTPUT);
-pinMode(4,OUTPUT);
-pinMode(0,OUTPUT);
 
 digitalWrite(16,HIGH);
-digitalWrite(5,HIGH);
-digitalWrite(4,HIGH);
-digitalWrite(0,HIGH);
+
 
   Serial.println();
   Serial.println();
@@ -38,20 +34,15 @@ digitalWrite(0,HIGH);
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-}
 
 
-int value = 0;
 
-void loop() {
+
+
   delay(5000);
-  ++value;
 
   int b1=digitalRead(16);
-    int b2=digitalRead(5);
-      int b3=digitalRead(4);
-        int b4=digitalRead(0);
-
+    
 
 
 
@@ -74,9 +65,16 @@ Serial.print(weight);
     return;
   }
 
-  String url = "/set.php?user=123&type=0&weight=";
+
+  if(b1==LOW){
+
+   url = "/add_balance.php?user=9848481610&type=blue&weight=";
   url += weight;
-  
+  }
+  else{
+   url = "/add_balance.php?user=9848481610&type=green&weight=13.6";
+    
+  }
   
   
   Serial.print("Requesting URL: ");
@@ -107,3 +105,10 @@ Serial.print(weight);
   Serial.println();
   Serial.println("closing connection");
 }
+
+void loop()
+{
+
+
+}
+
