@@ -53,7 +53,14 @@ if(isset($_SESSION['buyer']))
     </nav>
 
     <div class="container">
-
+<?php
+if(isset($_GET['message']))
+{
+echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+  <strong>".$_GET['message']."</strong></div>";
+}
+?>
      <form class="form-horizontal" method="post" action="check.php">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Mobile</label>

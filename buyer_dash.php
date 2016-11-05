@@ -47,17 +47,24 @@ if(!isset($_SESSION['buyer']))
     </nav>
 
     <div class="container">
-
+<?php
+if(isset($_GET['message']))
+{
+echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+  <strong>".$_GET['message']."</strong></div>";
+}
+?>
 <h2>Welcome <?php echo $_SESSION['buyer']; ?><br></h2><br>
-<a class="btn btn-default" href="buyer_dash.php?message=po" role="button">Place order</a>
-<a class="btn btn-default" href="buyer_dash.php?message=vo" role="button">View Orders</a>
+<a class="btn btn-default" href="buyer_dash.php?msg=po" role="button">Place order</a>
+<a class="btn btn-default" href="buyer_dash.php?msg=vo" role="button">View Orders</a>
 <a class="btn btn-default" href="#" role="button">Change Password</a>
 <a class="btn btn-default" href="#" role="button">Update Profile</a>
 <br><br>
 <?php
-    if(isset($_GET['message']))
+    if(isset($_GET['msg']))
     {
-        if($_GET['message']=="po")
+        if($_GET['msg']=="po")
         {
             echo "<form class=\"form-horizontal\" method=\"post\" action=\"placeorder.php\">
   <div class=\"form-group\">
@@ -85,7 +92,7 @@ if(!isset($_SESSION['buyer']))
   </div>
   </form>";
         }
-        if($_GET['message']=="vo")
+        if($_GET['msg']=="vo")
         {
             $sql = "SELECT * FROM orders where phone = \"".$_SESSION['buyer']."\"";
     $result = $conn->query($sql);

@@ -47,18 +47,25 @@ if(!isset($_SESSION['seller']))
     </nav>
 
     <div class="container">
-
+<?php
+if(isset($_GET['message']))
+{
+echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+  <strong>".$_GET['message']."</strong></div>";
+}
+?>
 <h2>Welcome <?php echo $_SESSION['seller']; ?><br></h2><br>
-<a class="btn btn-default" href="seller_dash.php?message=db" role="button">Display Balance</a>
+<a class="btn btn-default" href="seller_dash.php?msg=db" role="button">Display Balance</a>
 <a class="btn btn-default" href="#" role="button">Redeem to my Account</a>
 <a class="btn btn-default" href="#" role="button">Change Password</a>
 <a class="btn btn-default" href="#" role="button">Leave application</a>
 <a class="btn btn-default" href="#" role="button">Update Profile</a>
 <br><br>
 <?php
-    if(isset($_GET['message']))
+    if(isset($_GET['msg']))
     {
-        if($_GET['message']=="db")
+        if($_GET['msg']=="db")
         {
             $sql = "SELECT balance FROM seller where phone = \"".$_SESSION['seller']."\"";
     $result = $conn->query($sql);
